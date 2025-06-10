@@ -1,255 +1,199 @@
+
+
 <!DOCTYPE html>
-<html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>沉 淀</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="沉 淀">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="沉 淀">
-<meta property="og:locale">
-<meta property="article:author" content="Gaofeng Peng">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="沉 淀" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>沉 淀</title>
 
-  
+    <meta name="author" content="Gaofeng Peng">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="https://peng-gx.github.io/">
+
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
+    
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+    
+
+    
+<script src="/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/js/jquery-1.9.1.js"></script>
+
+
+    
+
+    
+<script src="/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
 
 <meta name="generator" content="Hexo 7.3.0"></head>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">沉 淀</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">抬头吧 黑暗过会是晨曦 怀着乐观总有转机</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">沉 淀</a></h1>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
+    </hgroup>
 </header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-深入理解TCP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/" class="article-date">
-  <time class="dt-published" datetime="2025-06-10T06:14:29.000Z" itemprop="datePublished">2025-06-10</time>
-</a>
+<nav role="navigation">
     
-  </div>
-  <div class="article-inner">
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+        </ul>
     
-    
-      <header class="article-header">
+
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:https://peng-gx.github.io/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">深入理解TCP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>TCP是一个传输层协议，也是面试的常考点</p>
-<p>如何理解三次握手和四次挥手</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/" data-id="cmbq4lxvg00006ku1brvo4y8h" data-title="深入理解TCP" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/10/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-06-10T05:42:32.030Z" itemprop="datePublished">2025-06-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+            <li><a href="/">Blog</a></li>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/10/hello-world/">Hello World</a>
-    </h1>
-  
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
 
-      </header>
+
+<div id="main">
+    <div id="content">
+        <div class="blog-index">
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        
+        <article>
+            <header>
+                <h1 class="entry-title">
+                    <a href="/2025/06/10/深入理解TCP/">深入理解TCP</a>
+                </h1>
+                <p class="meta">
+                    <time datetime="2025-06-10T06:14:29.000Z" data-updated="true">Tue Jun 10 2025</time>
+                </p>
+            </header>
+            <div class="entry-content"></div>
+            <footer>
+                <a rel="full-article" href="/2025/06/10/深入理解TCP/">Read on →</a>
+            </footer>
+        </article>
+        
+        <article>
+            <header>
+                <h1 class="entry-title">
+                    <a href="/2025/06/10/hello-world/">Hello World</a>
+                </h1>
+                <p class="meta">
+                    <time datetime="2025-06-10T05:42:32.030Z" data-updated="true">Tue Jun 10 2025</time>
+                </p>
+            </header>
+            <div class="entry-content"></div>
+            <footer>
+                <a rel="full-article" href="/2025/06/10/hello-world/">Read on →</a>
+            </footer>
+        </article>
+        
+        <div class="pagination">
+    <a href="/archives">Blog Archives</a>
+    <span class="page-number current">1</span>
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+    
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">深入理解TCP</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/10/hello-world/">Hello World</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+    <a target="_blank" rel="noopener" href="https://github.com/peng-Gx">@peng-Gx</a> on GitHub
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'peng-Gx',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/hello-world/" data-id="cmbq3k8f500005wu1a5cc8b66" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
 
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
 
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
 
-  
-
-
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">深入理解TCP</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/10/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 Gaofeng Peng<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+
     </div>
-  </div>
+</div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2025 - Gaofeng Peng -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
 
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
 </html>
