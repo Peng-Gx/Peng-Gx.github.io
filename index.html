@@ -1,319 +1,542 @@
-
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>Internalization</title>
+  <meta charset="utf-8">
+  
+  <title>Internalization</title>
+  <meta name="author" content="Gaofeng Peng">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="author" content="Gaofeng Peng">
+  
+  <meta property="og:site_name" content="Internalization"/>
 
-    <link rel="shortcut icon" href="/images/favicon.png">
+  
+    <meta property="og:image" content=""/>
+  
 
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-    <link rel="canonical" href="https://peng-gx.github.io/">
-
-    
-        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
-    
-
-    
-
-    
-<script src="/js/modernizr-2.0.js"></script>
-
-
-    
-<script src="/js/jquery-1.9.1.js"></script>
-
-
-    
-
-    
-<script src="/js/octo.js"></script>
-
-
-    
-<link rel="stylesheet" href="/css/octo.css">
-
-
-    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
-          type="text/css">
-
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
-          type="text/css">
-
-    
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
 
 <meta name="generator" content="Hexo 7.3.0"></head>
+
+
 <body>
-
-<header role="banner">
-    <hgroup>
-        <h1><a href="/">Internalization</a></h1>
-        
-    </hgroup>
-</header>
-
-<nav role="navigation">
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Internalization</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
     
-        <ul class="subscription" data-subscription="rss">
-            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-        </ul>
+      <li><a href="/null">Home</a></li>
     
-
-    <form action="https://google.com/search" method="get">
-        <fieldset role="search">
-            <input type="hidden" name="q" value="site:https://peng-gx.github.io/">
-            <input class="search" type="text" name="q" results="0" placeholder="Search">
-        </fieldset>
-    </form>
-
-    <ul class="main-navigation">
-        
-            <li><a href="/">Blog</a></li>
-        
-            <li><a href="/archives">Archives</a></li>
-        
-    </ul>
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
 </nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-快速排序" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-12T12:05:10.000Z"><a href="/2025/06/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">2025-06-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a></h1>
+  
 
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>快速排序是技术岗面试手撕的常见题目，原理也很简单，但为什么我还是栽了 <code>:(</code></p>
+<blockquote>
+<p>快速排序的基本原理是什么？</p>
+</blockquote>
+<p>对于一个数组，从中选择一个数字作为基准，然后将剩下的数字分成比这个数字大的一堆和小的一堆，然后在划分好的两堆中重复上面的操作。</p>
+<p>每次划分都可以确定基准的位置。如果基准选得好，每次划分都可以刚好划分成等量的两堆，那么就只需要进行<code>logn</code>次的划分，每次划分需要遍历一次数组，复杂度就是<code>nlogn</code>；但如果每次划分只能得到一堆，也就是基准刚好就是最大值或者最小值，那么就需要<code>n</code>次划分，复杂度就是<code>n^2</code>。</p>
+<blockquote>
+<p>输入一个int数组，怎么进行快速排序？</p>
+</blockquote>
+<p>从上面排序原理的介绍，我们很容易想到用递归实现。如果不考虑内存占用，可以考虑使用辅助数组用来存储分好的两堆数字。</p>
+<p><em>(当时面试让实现快排，我只记得原理不记得具体实现，就用的这种方式 <code>:(</code>，可惜第一次写这个实现的时候，没有把基准单独拎出来陷入了死循环，菜就多练)</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">qsort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr)</span></span>&#123;</span><br><span class="line">    <span class="comment">//递归跳出条件，只有一个数字不需要排序</span></span><br><span class="line">    <span class="keyword">if</span>(arr.<span class="built_in">size</span>()&lt;=<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//利用辅助数组进行划分</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; bigger;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; smaller;</span><br><span class="line">    <span class="type">int</span> pivot=arr.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;arr.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]&lt;pivot) smaller.<span class="built_in">push_back</span>(arr[i]);</span><br><span class="line">        <span class="keyword">else</span> bigger.<span class="built_in">push_back</span>(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对子数组进行排序</span></span><br><span class="line">    <span class="built_in">qsort</span>(bigger);</span><br><span class="line">    <span class="built_in">qsort</span>(smaller);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将排序好的数组拷贝回原数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;smaller.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        arr[i]=smaller[i];</span><br><span class="line">    &#125;</span><br><span class="line">    arr[smaller.<span class="built_in">size</span>()]=pivot;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;bigger.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        arr[i+smaller.<span class="built_in">size</span>()<span class="number">+1</span>]=bigger[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来的是类似思路的原地快速排序。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">qsort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr, <span class="type">int</span> start, <span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(end-start<span class="number">+1</span>&lt;=<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> pivot=arr[start];</span><br><span class="line">    <span class="type">int</span> smallNum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]&lt;pivot) smallNum++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> pivotIndex=start+smallNum;</span><br><span class="line">    <span class="built_in">swap</span>(arr[start],arr[pivotIndex]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=start,j=pivotIndex<span class="number">+1</span>;i&lt;pivotIndex;)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]&lt;pivot) i++;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">swap</span>(arr[i],arr[j]);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">qsort</span>(arr,start, pivotIndex<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">qsort</span>(arr,pivotIndex<span class="number">+1</span>, end);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上两个实现其实都可以归到一种实现，就是基于数数找到基准的位置，前者是先划分，划分完中间的那个位置就是基准的位置；后者是直接数，确定基准位置后再原地划分。</p>
+<p>上面两个实现其实很符合直觉，也很容易理解，现场手撕记得原理就很容易想出来，但第二个实现虽然实现了原地快排，但每次划分需要两次遍历，接下来是经典实现，每次划分只需要一次遍历</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">qsort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr, <span class="type">int</span> start, <span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(end-start<span class="number">+1</span>&lt;=<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> left=start;</span><br><span class="line">    <span class="type">int</span> right=end;</span><br><span class="line">    <span class="type">int</span> pivot=arr[left];</span><br><span class="line">    <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right&amp;&amp;arr[right]&gt;=pivot) right--;</span><br><span class="line">        <span class="built_in">swap</span>(arr[left],arr[right]);</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right&amp;&amp;arr[left]&lt;=pivot) left++;</span><br><span class="line">        <span class="built_in">swap</span>(arr[left],arr[right]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">qsort</span>(arr, start, left<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">qsort</span>(arr, left<span class="number">+1</span>, end);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说句实话，我觉得这个实现其实不是很符合直觉，有很多注意点在里面。首先，我们这里选择的是数组首个数字作为基准，但比较推荐随机选择，<code>swap(arr[left],arr[random_index])</code>一下就好了，后续操作是一样的；其次就是<code>while</code>循环里的顺序，因为我们当前指向<code>pivot</code>的是<code>left</code>，所以接下来需要确定<code>right</code>；最后我们就通过一次划分确定了基准的位置。</p>
+<blockquote>
+<p>以上两种实现的区别是什么？</p>
+</blockquote>
+<p>以上两种实现都是基于递归，区别点在于每次划分确定基准位置的方式不同。前者就是数数，把小堆数量数出来了，那么基准位置就在<code>arr[samller.size()]</code>；而后者就很妙，后者的基准位置一直在浮动，要么在<code>left</code>指针下，要么在<code>right</code>指针下，两指针外是分好的堆，两指针内是待分的堆，当左右指针相遇时，也就意味着没有需要划分的了，同时，基准位置也确定了。</p>
 
-<div id="main">
-    <div id="content">
-        <div class="blog-index">
-    
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/12/快速排序/">快速排序</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-12T12:05:10.000Z" data-updated="true">Thu Jun 12 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/12/快速排序/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/为什么写博客/">为什么写博客</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-11T03:29:19.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/为什么写博客/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/面试与工作/">面试与工作</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T18:06:26.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/面试与工作/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/了解hexo/">了解hexo</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T17:57:04.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/了解hexo/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/了解ssh/">了解ssh</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T17:56:51.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/了解ssh/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/了解git/">了解git</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T17:56:42.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/了解git/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/11/找暑期实习实录/">找暑期实习实录</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T17:37:18.000Z" data-updated="true">Wed Jun 11 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/11/找暑期实习实录/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/10/markdown基本语法/">markdown基本语法</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T08:59:43.000Z" data-updated="true">Tue Jun 10 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/10/markdown基本语法/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/10/快速开始/">快速开始</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T08:07:17.000Z" data-updated="true">Tue Jun 10 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/10/快速开始/">Read on →</a>
-            </footer>
-        </article>
-        
-        <article>
-            <header>
-                <h1 class="entry-title">
-                    <a href="/2025/06/10/深入理解TCP/">深入理解TCP</a>
-                </h1>
-                <p class="meta">
-                    <time datetime="2025-06-10T06:14:29.000Z" data-updated="true">Tue Jun 10 2025</time>
-                </p>
-            </header>
-            <div class="entry-content"></div>
-            <footer>
-                <a rel="full-article" href="/2025/06/10/深入理解TCP/">Read on →</a>
-            </footer>
-        </article>
-        
-        <div class="pagination">
-    <a href="/archives">Blog Archives</a>
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-</div>
-
-    
-</div>
-
-<aside class="sidebar">
-    <section class="odd">
-    <h1>Recent Posts</h1>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/06/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E5%8D%9A%E5%AE%A2/">为什么写博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E9%9D%A2%E8%AF%95%E4%B8%8E%E5%B7%A5%E4%BD%9C/">面试与工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E4%BA%86%E8%A7%A3hexo/">了解hexo</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E4%BA%86%E8%A7%A3ssh/">了解ssh</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E4%BA%86%E8%A7%A3git/">了解git</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/11/%E6%89%BE%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0%E5%AE%9E%E5%BD%95/">找暑期实习实录</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/10/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">markdown基本语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/10/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/">快速开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">深入理解TCP</a></li></ul>
-</section><section class="even">
-    <h1>GitHub Repos</h1>
-    <ul id="gh_repos">
-        <li class="loading">Status updating&#8230;</li>
-    </ul>
-
-    <a target="_blank" rel="noopener" href="https://github.com/peng-Gx">@peng-Gx</a> on GitHub
-
-    <script>
-        $(document).ready(function(){
-            const options = {
-                user: 'peng-Gx',
-                count: 0,
-                skip_forks: true,
-                target: '#gh_repos'
-            }
-
-            function escapeHtml(str) {
-                return $('<div/>').text(str).html();
-            }
-
-            function render(target, repos){
-                let i, fragment = '', t = $(target)[0];
-
-                for(i = 0; i < repos.length; i++) {
-                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
-                }
-                t.innerHTML = fragment;
-            }
-
-            $.ajax({
-                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
-                dataType: 'jsonp',
-                error: function (err) {
-                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
-                },
-                success: function(data) {
-                    var repos = [];
-                    if (!data || !data.data) { return; }
-                    for (var i = 0; i < data.data.length; i++) {
-                        if (options.skip_forks && data.data[i].fork) { continue; }
-                        repos.push(data.data[i]);
-                    }
-                    if (options.count) { repos.splice(options.count); }
-                    render(options.target, repos);
-                }
-            });
-        });
-    </script>
-</section>
-</aside>
-
+      
     </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-为什么写博客" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-11T03:29:19.000Z"><a href="/2025/06/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E5%8D%9A%E5%AE%A2/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E5%8D%9A%E5%AE%A2/">为什么写博客</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>如果只是为了记录知识点，那么自己写完全不如搜索引擎和大模型，它们更加完整更加系统，那么为什么要自己写？而且写完了如果没有复盘，也很容易忘记，那么为什么还要自己写？</p>
+</blockquote>
+<ul>
+<li><p>正因为如此，所以写博客做笔记的目的就不是为了更全面地记录知识和记住，而是记录思考的过程和培养学习的惯性。</p>
+</li>
+<li><p>主动输出相比被动输入的学习效率更高，而写博客是一种主动输出的过程。</p>
+</li>
+<li><p>不同的人有不一样的背景知识，对于同样的内容会产生不同的理解，学习同样的内容难易程度也并不相同。别人总结的知识点，对于自己来说可能是更臃肿的，也可能是更简陋的，因为他们假设了读者具备跟他一样的背景知识。正因为如此，写属于自己的博客就相当有必要，这是一种更有针对性的学习过程，是基于自己的背景开始的学习。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-面试与工作" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T18:06:26.000Z"><a href="/2025/06/11/%E9%9D%A2%E8%AF%95%E4%B8%8E%E5%B7%A5%E4%BD%9C/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E9%9D%A2%E8%AF%95%E4%B8%8E%E5%B7%A5%E4%BD%9C/">面试与工作</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-了解hexo" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T17:57:04.000Z"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3hexo/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3hexo/">了解hexo</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>在了解hexo之前，我们可能先要了解一下网站有哪些类型</p>
+<blockquote>
+<p>网站可以分为静态网站和动态网站，前者由静态的<code>html</code>文件组成，不支持复杂交互，不需要数据库，比如个人博客网站；后者则动态生成网页，支持复杂交互和需要数据库，比如电商网站</p>
+</blockquote>
+<p>静态网站比较适合用来展示文章和作品，要部署这么一个网站，只需要在服务器上存放<code>html js css</code>等静态文件即可，然后使用服务器应用比如<code>nginx tomcat</code>等进行管理即可</p>
+<p>github提供了一种托管服务，可以将仓库直接发布</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-了解ssh" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T17:56:51.000Z"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3ssh/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3ssh/">了解ssh</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-了解git" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T17:56:42.000Z"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3git/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E4%BA%86%E8%A7%A3git/">了解git</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>什么是git</p>
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-找暑期实习实录" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T17:37:18.000Z"><a href="/2025/06/11/%E6%89%BE%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0%E5%AE%9E%E5%BD%95/">2025-06-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/11/%E6%89%BE%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0%E5%AE%9E%E5%BD%95/">找暑期实习实录</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>24年下半年一直在准备小论文</p>
+<p>11月底完成投稿TCI，相比同门们的第一篇投稿晚了4个月</p>
+<p>12月接着准备第二篇，寒假期间也一直在跑实验</p>
+<p>2月基本实验结果也有了，但没着急写，因为第二篇论文的目的主要是为了毕业论文，打算回学校后就准备准备找暑期实习</p>
+<p>2月中旬，TCI给出了返稿意见，又忙活了一个多月改论文加实验</p>
+<p>3月底，正式开始准备java后端开发的内容，计划在5月份投出简历。</p>
+<p>4月，java-&gt;javaWeb-&gt;Spring-&gt;…，java后端的技术栈的内容很多，学得有点着急，基本就是走马观花般过一遍，代码实践落得有点多。而与此同时，同门则已经在疯狂面试中，4月底都顺利拿到offer，分别入职字节和腾讯。</p>
+<p>5月初，TCI二审结果又出来了，我只能又放下准备，改论文，写response letter</p>
+<p>5月中下旬，写完简历开始投递，投递之后便开始准备面试的八股文，回顾javaweb、redis的视频内容，同时也直接学习小林coding的八股文合集</p>
+<p>5月底6月初，都是一个，准备面试内容投简历做机试做测评的状态。但面试机会并不多，只有腾讯给了几次面试机会，其他厂做完机试测评之后就一直没有状态更新，说明要么是我简历不行，要么是池子太大没人捞，而在boss或者牛客上投递的中小厂则要么完全没有回复，要么就是拒绝。这一方面是小厂没有资源培养实习生，另一方面则是大厂现在这个阶段的hc少了，竞争也更激烈，可以进行横向对比。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这说明早点投简历的好处，一方面简历投递到安排面试需要一段时间，所以即使没准备好也可以开始投简历；另一方面，早投递的时候池子相对小，会有更多面试机会，同时也需要注意不同公司在不同城市的hc。但无论早投递还是晚投递，要抓住面试机会还需要自身实力，至少就我来说，虽然我投递比较晚，但腾讯还是给了我挺多次机会，可惜都没抓住</span><br><span class="line"></span><br><span class="line">这也一定程度说明内推码的价值，内推可以增加被捞面试的机会</span><br></pre></td></tr></table></figure>
+<p>6月中，接下来计划还是打扎实基础，随缘投简历，随缘面试涨经验，做好零实习直面秋招的准备</p>
+<blockquote>
+<p>实习简历投递真的越早越好吗？</p>
+</blockquote>
+<p>就目前来说，早投递有一定的道理，但并非越早越好，每个人都有自己的节奏，不必赶鸭子上架，最好的当然是准备得差不多的时候开始投简历，但什么叫差不多，我想每个人有自己的判断</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-markdown基本语法" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T08:59:43.000Z"><a href="/2025/06/10/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">2025-06-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/10/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">markdown基本语法</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><strong>学习markdown的语法满足二八法则，只需要把常用的记住即可，其他的可以在需要的时候，比如数学公式或者列表，再查<a target="_blank" rel="noopener" href="https://www.runoob.com/markdown/md-tutorial.html">字典</a></strong></p>
+<h2 id="创建标题"><a href="#创建标题" class="headerlink" title="创建标题"></a>创建标题</h2><p>使用<code># </code>标记标题，通过区分数量进行标题分级</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># title</span><br><span class="line">## title</span><br></pre></td></tr></table></figure>
+
+<h2 id="换行新段落"><a href="#换行新段落" class="headerlink" title="换行新段落"></a>换行新段落</h2><p>使用多空格加回车，或者使用两次回车</p>
+<h2 id="强调文字"><a href="#强调文字" class="headerlink" title="强调文字"></a>强调文字</h2><p>使用<code>*</code>强调文字，单<code>*</code>包裹表示斜体，双<code>*</code>包裹表示粗体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*文字*</span><br><span class="line">**文字**</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>行内代码使用<code>`</code>包裹，代码块则使用<code>```</code>包裹</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>替代文字在图片无法显示时显示，hexo项目要把图片放到<code>source/images</code>下，同时路径为<code>./images/xxx.png</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![替代文字](图片路径)</span><br></pre></td></tr></table></figure>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[链接名字](链接)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用<code>---</code>或者<code>***</code>就可以生成分割线</p>
+<h2 id="列表分点"><a href="#列表分点" class="headerlink" title="列表分点"></a>列表分点</h2><p>使用<code>-</code>或者<code>+</code>或者<code>*</code>进行无序分点，使用<code>1. </code>进行有序分点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 内容</span><br><span class="line">- 内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>使用<code>&gt;</code>可以引用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 内容</span><br><span class="line">&gt; 内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><p>使用双<code>~</code>包裹可以表示删除线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~删除~~</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-快速开始" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T08:07:17.000Z"><a href="/2025/06/10/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/">2025-06-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/10/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/">快速开始</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>在安装完hexo、部署配置完之后，我们就可以简单开始编写自己的博客</p>
+<h2 id="如何使用github托管个人网页"><a href="#如何使用github托管个人网页" class="headerlink" title="如何使用github托管个人网页"></a>如何使用github托管个人网页</h2><p>首先，我们</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建博客文件</span></span><br><span class="line">hexo new [layout] &lt;title&gt; </span><br><span class="line"></span><br><span class="line">hexo new 快速入门</span><br><span class="line">hexo new &quot;hello world&quot; #标题有空格需要加引用</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">生成静态文件</span></span><br><span class="line">hexo generate</span><br><span class="line">hexo g</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">本地预览</span></span><br><span class="line">hexo server</span><br><span class="line">hexo s</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">部署到网站</span></span><br><span class="line">hexo deploy</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>在hexo项目目录下，使用hexo命令创建一个博客文件，然后就可以在source&#x2F;_posts文件夹下就可以看到新增的文件</p>
+</li>
+<li><p>基于markdown语法对博客文件进行内容编写</p>
+</li>
+<li><p>编写完成后，使用相关命令将md文件生成对应的静态html文件，你可以在本地进行预览，也可以直接应用到远程仓库上</p>
+</li>
+<li><p>建议使用vscode进行编辑，一方面vscode自带终端，另一方面vscode自带markdown预览</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+shift+p //打开vscode搜索，搜索markdown，打开预览</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-深入理解TCP" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2025-06-10T06:14:29.000Z"><a href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">2025-06-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2025/06/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3TCP/">深入理解TCP</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>TCP是一个传输层协议，也是面试的常考点</p>
+<p>如何理解三次握手和四次挥手</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Nächste Seite</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="as_sitesearch" value="peng-gx.github.io">
+  </form>
 </div>
 
-<footer role="contentinfo">
-    <p>
-        Copyright © 2025 - Gaofeng Peng -
-        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
-    </p>
-</footer>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/markdown/">markdown</a><small>1</small></li>
+  
+  </ul>
+</div>
 
 
+  
+  <div class="widget widget-archives">
+    <h3 class="title">Archiv</h3>
+    <div class="entry">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2025 Gaofeng Peng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
 
 </body>
 </html>
