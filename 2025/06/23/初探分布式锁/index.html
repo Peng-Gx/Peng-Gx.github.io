@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>两整数之和</title>
+    <title>初探并发安全</title>
 
     <meta name="author" content="Gaofeng Peng">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="https://peng-gx.github.io/2025/06/19/两数之和/">
+    <link rel="canonical" href="https://peng-gx.github.io/2025/06/23/初探分布式锁/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -89,36 +89,26 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">两整数之和</h1>
+            <h1 class="entry-title">初探并发安全</h1>
             <p class="meta">
-                <time datetime="2025-06-18T16:49:38.000Z" data-updated="true">Thu Jun 19 2025</time>
+                <time datetime="2025-06-22T16:47:21.000Z" data-updated="true">Mon Jun 23 2025</time>
             </p>
         </header>
         <div class="entry-content">
-            <h3 id="如何在不使用数学运算符号的前提下实现两整数之和"><a href="#如何在不使用数学运算符号的前提下实现两整数之和" class="headerlink" title="如何在不使用数学运算符号的前提下实现两整数之和"></a>如何在不使用数学运算符号的前提下实现两整数之和</h3><p>这是一道经典的算法题，不使用数学运算符，应该能想到使用位运算，模拟半加器实现</p>
-<h3 id="位运算符有哪些"><a href="#位运算符有哪些" class="headerlink" title="位运算符有哪些"></a>位运算符有哪些</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a&amp;b <span class="comment">//与</span></span><br><span class="line">a|b <span class="comment">//或</span></span><br><span class="line">a^b <span class="comment">//异或</span></span><br><span class="line">~a <span class="comment">//非</span></span><br><span class="line">a&lt;&lt;<span class="number">1</span> <span class="comment">//左移</span></span><br><span class="line">a&gt;&gt;<span class="number">1</span> <span class="comment">//右移</span></span><br></pre></td></tr></table></figure>
+            <h3 id="在什么情况下会出现并发安全问题"><a href="#在什么情况下会出现并发安全问题" class="headerlink" title="在什么情况下会出现并发安全问题"></a>在什么情况下会出现并发安全问题</h3><p>多线程之间如果需要访问共享变量，比如读写某一个变量，某一行数据库数据，访问临界资源等等，就可能出现并发安全问题，比如超卖，更新丢失，数据结构异常等等。这里说的并发安全其实说得是被访问的共享变量的安全，逻辑不符合预期</p>
+<h3 id="有什么方法解决并发安全问题"><a href="#有什么方法解决并发安全问题" class="headerlink" title="有什么方法解决并发安全问题"></a>有什么方法解决并发安全问题</h3><p>问题出在被访问变量上，所以我们可以使用安全的共享变量，比如原子类或者并发集合，比如<code>java</code>提供的原子整型<code>AtomicInteger</code>，可以保证自增自减操作是安全的，又比如并发集合类<code>ConcurrentHashMap</code>，可以保证访问和修改是安全的。这里还需要提到一个关键字<code>volatile</code>，对于它所修饰的变量，能够保证可见性，变量更新可以被立刻觉察</p>
+<p>以上的安全变量，只能保证对它的单次操作是安全的，不会出现异常；但无法保证组合操作是安全的，也无法保证业务逻辑的安全，这时候就需要用到锁</p>
+<p>锁能够保证被锁包裹的临界区只有一个线程访问，也就是线程间是串行执行，从而保证线程安全，业务逻辑的安全。<code>java</code>提供了比较多的锁，<code>synchronized</code>关键字，<code>Lock</code>接口及其实现类比如<code>ReentrantLock</code>，这些锁之间的区别在于重量级，能否重入，公平与否，能否被中断等等，但这些锁都会涉及操作系统的调度，都是比较重的锁；此外，<code>java</code>也提供了一些原子操作，可以实现更轻量的锁，比如<code>CAS</code>，<code>ComparedAndSwap</code>操作，实际上，前面提到的锁多多少少都会涉及到一些原子操作，如下我们可以使用<code>CAS</code>实现一个轻量的自旋锁，获取不到锁不会阻塞，会一直尝试获取锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CasLock</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AtomicBoolean lock=<span class="keyword">new</span> <span class="title class_">AtomicBoolean</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">lock</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!lock.compareAndSet(<span class="literal">false</span>,<span class="literal">true</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">()</span>&#123;</span><br><span class="line">        lock.set(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>对于两数之和，我们可以拆分成两步，第一步，不考虑进位相加，第二步，加进位；前者可以使用<strong>异或运算</strong>实现，后者可以使用<strong>与运算</strong>和<strong>左移</strong>实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span><span class="number">+3</span>=<span class="number">9</span></span><br><span class="line">     <span class="number">00110</span></span><br><span class="line">    <span class="number">+00011</span></span><br><span class="line">     <span class="number">00101</span> <span class="comment">//不考虑进位直接加，异或实现</span></span><br><span class="line">    <span class="number">+00100</span> <span class="comment">//与运算得到进位0010，左移1位才是真正要加的</span></span><br><span class="line">     <span class="number">00001</span> <span class="comment">//重复操作</span></span><br><span class="line">    <span class="number">+01000</span></span><br><span class="line">     <span class="number">01001</span> <span class="comment">//结果=9</span></span><br><span class="line">     <span class="number">00000</span> <span class="comment">//直到进位为0</span></span><br></pre></td></tr></table></figure>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(b!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="type">int</span> carry=(a&amp;b)&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        a=a^b;</span><br><span class="line">        b=carry;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p>如果是负数相加，也可以吗？</p>
-<p>可以！简单分析一下就知道了。道理也很简单了，因为使用的是补码，补码本质上没有符号位，都是数值位。负数的补码表示就是加了模长的正数，两负数补码相加得到就是所需要结果的补码。</p>
-
+<h3 id="怎么使用安全变量和锁"><a href="#怎么使用安全变量和锁" class="headerlink" title="怎么使用安全变量和锁"></a>怎么使用安全变量和锁</h3><p>先要确定共享变量。如果没有共享变量，就不存在线程安全问题，共享变量一般是数据库的数据，或者是同一台主机内多线程共享的变量，比如某一个对象的属性<br>然后确定锁。锁也是共享的，与共享变量绑定，每个线程获取锁是互斥的，要确定不同线程申请的是同一把锁<br>最后包裹临界代码。临界代码就是访问共享变量胡总和共享资源的代码</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Gaofeng Peng</span></span>
-                <time datetime="2025-06-18T16:49:38.000Z" data-updated="true">Thu Jun 19 2025</time>
+                <time datetime="2025-06-22T16:47:21.000Z" data-updated="true">Mon Jun 23 2025</time>
                 
-    <span class="categories">
-    
-        <a class="category" href="/tags/%E6%89%8B%E6%92%95/">手撕</a>,
-    
-        <a class="category" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-    
-    </span>
-
             </p>
             <div class="sharing">
     
@@ -126,11 +116,9 @@
 
             <p class="meta">
                 
-                <a class="basic-alignment left" href="/" title="Previous Post: 初探并发安全">« 初探并发安全</a>
-                
 
                 
-                <a class="basic-alignment right" href="/" title="Previous Post: 快速排序">快速排序 »</a>
+                <a class="basic-alignment right" href="/" title="Previous Post: 两整数之和">两整数之和 »</a>
                 
             </p>
         </footer>
