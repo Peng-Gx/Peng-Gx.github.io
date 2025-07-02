@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>了解分布式锁</title>
+    <title>了解Prompt Engineering</title>
 
     <meta name="author" content="Gaofeng Peng">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="https://peng-gx.github.io/2025/06/26/了解分布式锁/">
+    <link rel="canonical" href="https://peng-gx.github.io/2025/06/29/了解Prompt/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -89,29 +89,19 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">了解分布式锁</h1>
+            <h1 class="entry-title">了解Prompt Engineering</h1>
             <p class="meta">
-                <time datetime="2025-06-26T09:01:44.000Z" data-updated="true">Thu Jun 26 2025</time>
+                <time datetime="2025-06-29T08:43:01.000Z" data-updated="true">Sun Jun 29 2025</time>
             </p>
         </header>
         <div class="entry-content">
-            <h3 id="什么是分布式锁"><a href="#什么是分布式锁" class="headerlink" title="什么是分布式锁"></a>什么是分布式锁</h3><p>在前面 <a href="/2025/06/23/%E5%88%9D%E6%8E%A2%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8/" title="初探并发安全">初探并发安全</a> 中，我们提到锁在并发安全中的作用，但是jvm提供的锁，只能约束单机内的并发线程。而单机无法满足高并发的业务需求，服务器集群下jvm的锁就失效了，这时候就需要考虑分布式锁</p>
-<h3 id="分布式锁的应用场景"><a href="#分布式锁的应用场景" class="headerlink" title="分布式锁的应用场景"></a>分布式锁的应用场景</h3><ul>
-<li>redis的缓存击穿问题下，如果所有线程都尝试去重建缓存，对数据库的压力过大，需要让一个线程去重建缓存，可以使用redis实现的分布式锁。此处共享变量是数据库中的某一条数据，锁则是redis中间件的关于某一条数据的key。</li>
-<li>超卖问题的一人一单问题（没有redis缓存版本），访问库存、检查订单、扣减库存、写入订单，对于同一个用户的并发访问，这四步需要连贯完成，可以使用redis实现分布式锁。此处共享变量是数据库中的多条数据，锁则是redis中间件的关于某一个用户的key。</li>
-</ul>
-<p>分布式锁的应用对象主要是数据库，而在前面 <a href="/2025/06/23/%E5%88%9D%E6%8E%A2%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8/" title="初探并发安全">初探并发安全</a> 中，锁约束的一般是对象共享字段；分布式锁依赖一个唯一第三方组件来实现，而后者则依赖jvm单机。</p>
-<h3 id="怎么实现分布式锁"><a href="#怎么实现分布式锁" class="headerlink" title="怎么实现分布式锁"></a>怎么实现分布式锁</h3><p>分布式锁这么常用，自然有相关的实现，比如redission，但我也了解到分布式锁的几种简单实现</p>
-<ul>
-<li>基于redis的set nx ex命令。redis本身的单线程属性，再加上lua脚本实现redis多条命令的原子性，可以保证互斥，所以可以使用redis来实现分布式锁。比如set nx，会创建不存在的key，创建成功表示获得锁，创建失败表示没获得锁，删除key就是释放锁；要确保锁能被释放，这就需要ex设置过期时间，但其实还是存在一些问题，时长怎么确定？然后还有一个就是误删问题，这就需要在释放锁时判断value，value应该记录获得锁的线程的信息；还有可重入，阻塞等待等特性需要进一步考虑</li>
-<li>基于mysql数据库。可以利用数据库本身的锁机制，以及主键的唯一性可以保证互斥，比如对一张表写某个主键，写成功表示获得锁，删除表示释放锁。</li>
-</ul>
-
+            <h3 id="提示工程与模型微调"><a href="#提示工程与模型微调" class="headerlink" title="提示工程与模型微调"></a>提示工程与模型微调</h3><p>对于针对某一项任务，使用特定数据集训练的小模型，如果需要迁移新场景，可能需要进行额外的训练微调，调整模型参数。但对于大模型来说，大模型具有知识涌现、逻辑推理、超长记忆的特性，可以通过调整输入上下文，也就是自然语言的提示指令，从而引导模型输出更高质量的回答，这不需要对模型参数进行微调。如何设计针对特定任务的prompt，就属于提示工程的工作</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Gaofeng Peng</span></span>
-                <time datetime="2025-06-26T09:01:44.000Z" data-updated="true">Thu Jun 26 2025</time>
+                <time datetime="2025-06-29T08:43:01.000Z" data-updated="true">Sun Jun 29 2025</time>
                 
             </p>
             <div class="sharing">
@@ -120,11 +110,9 @@
 
             <p class="meta">
                 
-                <a class="basic-alignment left" href="/" title="Previous Post: 了解nginx">« 了解nginx</a>
-                
 
                 
-                <a class="basic-alignment right" href="/" title="Previous Post: 初探并发安全">初探并发安全 »</a>
+                <a class="basic-alignment right" href="/" title="Previous Post: 了解nginx">了解nginx »</a>
                 
             </p>
         </footer>
