@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>了解nginx</title>
+    <title>了解git</title>
 
     <meta name="author" content="Gaofeng Peng">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="https://peng-gx.github.io/2025/06/28/了解nginx/">
+    <link rel="canonical" href="https://peng-gx.github.io/2025/07/19/了解git/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -89,18 +89,25 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">了解nginx</h1>
+            <h1 class="entry-title">了解git</h1>
             <p class="meta">
-                <time datetime="2025-06-28T06:56:35.000Z" data-updated="true">Sat Jun 28 2025</time>
+                <time datetime="2025-07-19T10:54:05.000Z" data-updated="true">Sat Jul 19 2025</time>
             </p>
         </header>
         <div class="entry-content">
-            
+            <h3 id="使用git的目的"><a href="#使用git的目的" class="headerlink" title="使用git的目的"></a>使用git的目的</h3><p>对于当前的我来说，使用git主要是为了使用github，将代码保存到远程仓库，并且记录每一次的提交内容以供回溯，涉及的仅是单分支的管理和同步。未来可能会涉及多个分支，以及各种回滚操作，但现在我还用不到。</p>
+<h3 id="怎么创建git仓库"><a href="#怎么创建git仓库" class="headerlink" title="怎么创建git仓库"></a>怎么创建git仓库</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>远程创建一个空仓库，本地初始化仓库，关联远程仓库，修改本地分支名，提交本地分支到远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git init </span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br><span class="line">git branch -M main //改本地分支名字</span><br><span class="line">git remote origin <span class="string">&quot;git@xxx&quot;</span> //配置一个远程仓库，别名origin</span><br><span class="line">git push -u origin main //将本地分支提交到远程仓库，没有对应名字分支则创建对应分支，也可以提交到不同名字的分支比如git push -u origin main:dev；这句语句之后本地分支和远程分支之间就会建立关联，直接push就是对应分支</span><br><span class="line"></span><br><span class="line">//前面配置完，就可以使用这些语句进行简单的提交</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br><span class="line">git push</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>现在远程创建一个空仓库，然后clone到本地，把文件拷贝过去然后提交即可，其他操作都不需要</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Gaofeng Peng</span></span>
-                <time datetime="2025-06-28T06:56:35.000Z" data-updated="true">Sat Jun 28 2025</time>
+                <time datetime="2025-07-19T10:54:05.000Z" data-updated="true">Sat Jul 19 2025</time>
                 
             </p>
             <div class="sharing">
@@ -109,11 +116,9 @@
 
             <p class="meta">
                 
-                <a class="basic-alignment left" href="/" title="Previous Post: 了解Prompt Engineering">« 了解Prompt Engineering</a>
-                
 
                 
-                <a class="basic-alignment right" href="/" title="Previous Post: 了解分布式锁">了解分布式锁 »</a>
+                <a class="basic-alignment right" href="/" title="Previous Post: 了解程序流程图和数据流图">了解程序流程图和数据流图 »</a>
                 
             </p>
         </footer>
