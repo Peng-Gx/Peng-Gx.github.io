@@ -102,7 +102,8 @@
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>现在远程创建一个空仓库，然后clone到本地，把文件拷贝过去然后提交即可，其他操作都不需要</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h5 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h5><h5 id="建议使用ssh而不是http"><a href="#建议使用ssh而不是http" class="headerlink" title="建议使用ssh而不是http"></a>建议使用ssh而不是http</h5><p>现在主机生成对于公钥和私钥，然后将公钥拷贝github上即可<br>rsa加密有两个特性，公钥加密的内容只能用私钥解密，私钥签名的内容只能用公玥验证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;email@example.com&quot;</span> \\生成密钥对</span><br><span class="line">ssh -T git@github.com \\测试连接</span><br><span class="line"></span><br><span class="line">git remote set-url origin git@github.com:your-username/your-repo.git \\如果需要的话</span><br></pre></td></tr></table></figure>
         </div>
         <footer>
             <p class="meta">
